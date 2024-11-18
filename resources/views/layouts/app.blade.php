@@ -37,15 +37,12 @@
 
 @include('layouts.header')
 
-
-
   <!-- Content Wrapper. Contains page content -->
 
   <!-- /.content-wrapper -->
-  @include('layouts.footer')
-
 
   @yield('content')
+  @include('layouts.footer')
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
