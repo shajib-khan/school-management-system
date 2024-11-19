@@ -24,8 +24,8 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="" method="post">
-        {{ csrf_field() }}
+      <form action="{{ url('login') }}" method="post">
+       @csrf
         <div class="input-group mb-3">
           <input type="email" class="form-control"name="email" placeholder="Email">
           <div class="input-group-append">
@@ -45,7 +45,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input type="checkbox" id="remember" name="remember">
               <label for="remember">
                 Remember Me
               </label>
