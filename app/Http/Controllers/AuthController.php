@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Auth;
+use Hash;
 class AuthController extends Controller
 {
     public function login(){
@@ -15,8 +15,8 @@ class AuthController extends Controller
         return view('auth.login');
     }
     public function AuthLogin(Request $request){
-        $remember =!empty($request->remember)? true : false;
-        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],$remember))
+        //$remember =!empty($request->remember)? true : false;
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],true))
         {
             return redirect('admin/dashboard');
         }
@@ -24,4 +24,5 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'please enter your valid email');
         }
     }
+
 }
