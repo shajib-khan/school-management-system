@@ -151,7 +151,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -161,19 +161,57 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+            @if(Auth::user()->user_type==1)
+            <li class="nav-item">
+                <a href="{{ url('admin/dashboard') }}" class="nav-link">
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/admin/list') }}" class="nav-link">
+
+                  <p>
+                    Admin
+                  </p>
+                </a>
+              </li>
+            @elseif(Auth::user()->user_type==2)
+            <li class="nav-item">
+                <a href="{{ url('teacher/dashboard') }}" class="nav-link">
+
+                  <p>
+                    Admin
+                  </p>
+                </a>
+              </li>
+            @elseif(Auth::user()->user_type==3)
+            <li class="nav-item">
+                <a href="{{ url('student/dashboard') }}" class="nav-link">
+
+                  <p>
+                    Admin
+                  </p>
+                </a>
+              </li>
+            @elseif(Auth::user()->user_type==4)
+            <li class="nav-item">
+                <a href="{{ url('parent/dashboard') }}" class="nav-link">
+
+                  <p>
+                    Admin
+                  </p>
+                </a>
+              </li>
+            @endif
+
 
           <li class="nav-item">
-            <a href="{{ url('admin/dashboard') }}" class="nav-link">
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('admin/admin/list') }}" class="nav-link">
+            <a href="{{ url('logout') }}" class="nav-link">
 
               <p>
-                Admin
+                Logout
               </p>
             </a>
           </li>
