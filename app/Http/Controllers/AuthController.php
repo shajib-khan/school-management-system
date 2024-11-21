@@ -21,8 +21,12 @@ class AuthController extends Controller
             return redirect('admin/dashboard');
         }
         else{
-            return redirect()->back()->with('error', 'please enter your valid email');
+            return redirect('login');
         }
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect (url(''));
     }
 
 }
