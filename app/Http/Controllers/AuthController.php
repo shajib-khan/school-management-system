@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Hash;
+use App\Models\User;
 class AuthController extends Controller
 {
     public function login(){
@@ -44,6 +45,12 @@ class AuthController extends Controller
         }else{
             return redirect()->back()->with('error', 'please enter current email and password');
         }
+    }
+    public function PostForgotPassword(Request $request){
+        dd($request->all());
+    }
+    public function forgotPassword(){
+        return view('auth.forgot');
     }
     public function logout(){
         Auth::logout();
