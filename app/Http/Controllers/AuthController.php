@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Hash;
 use App\Models\User;
+use App\Mail\ForgotPasswordMail;
+use Mail;
+use Str;
 class AuthController extends Controller
 {
     public function login(){
@@ -47,7 +50,16 @@ class AuthController extends Controller
         }
     }
     public function PostForgotPassword(Request $request){
-        dd($request->all());
+        $user = User::getEmailSingle($request->email);
+
+        if(!empty($user)){
+            Mail::to($user->email)->send(new ForgotPasswordMail($user));
+
+            return redirect()->back()->with('success', "please check your email and reset your password");
+        }else{
+            return redirect()->back()->with('error', "email not found in the system");
+        }
+
     }
     public function forgotPassword(){
         return view('auth.forgot');
